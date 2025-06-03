@@ -22,3 +22,10 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
+  prometheus-postgres:
+    image: quay.io/prometheuscommunity/postgres-exporter:latest
+    environment:
+     - DATA_SOURCE_URI=
+     - DATA_SOURCE_USER=
+     - DATA_SOURCE_PASS=
+    network_mode: host

@@ -25,3 +25,7 @@ scrape_configs:
   - job_name: "prod-cadvisor"
     static_configs:
       - targets: ["192.168.0.186:18080"]
+
+  - job_name: prod-postgres
+    static_configs:
+      - targets: ["192.168.0.186:19187"]
