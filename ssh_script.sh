@@ -9,8 +9,8 @@ LOCAL_NODE_EXPORTER_PORT=19100
 LOCAL_CADVISOR_PORT=18080
 
 # Create tunnels
-ssh -L ${LOCAL_NODE_EXPORTER_PORT}:localhost:9100 \
-  -L ${LOCAL_CADVISOR_PORT}:localhost:8080 \
+ssh -L 192.168.0.186:${LOCAL_NODE_EXPORTER_PORT}:localhost:9100 \
+  -L 192.168.0.186:${LOCAL_CADVISOR_PORT}:localhost:8082 \
   -N -f ${PROD_SERVER}
 
 echo "SSH tunnels established:"
