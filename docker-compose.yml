@@ -7,7 +7,7 @@ services:
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
-      - "9090:9090"  # Only expose Prometheus externally
+      - "9090:9090" # Only expose Prometheus externally
     depends_on:
       - node-exporter
     networks:
@@ -18,7 +18,7 @@ services:
     container_name: prefect-exporter
     # No external ports - only accessible within Docker network
     environment:
-      PREFECT_API_URL: http://localhost:4200/api
+      PREFECT_API_URL: http://192.168.0.186:4200/api
       # PREFECT_API_AUTH_STRING: ""
     networks:
       - monitoring
@@ -84,7 +84,7 @@ services:
     image: grafana/loki:latest
     container_name: loki
     ports:
-      - "3100:3100"  # Only expose Loki externally
+      - "3100:3100" # Only expose Loki externally
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - logging
