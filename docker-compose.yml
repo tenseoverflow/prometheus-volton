@@ -5,11 +5,19 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - "9090:9090"
     depends_on:
       - node-exporter
+
+  prometheus-exporter:
+    image: prefecthq/prometheus-prefect-exporter:latest
+    ports:
+      - "8000:8000"
+    environment:
+      PREFECT_API_URL: http://localhost:4200/api
+      # PREFECT_API_AUTH_STRING: ""
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -24,9 +32,9 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--path.rootfs=/rootfs'
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/rootfs"
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -52,7 +60,7 @@ services:
       - prometheus
       - loki
     volumes:
-    - ./grafana-data:/var/lib/grafana
+      - ./grafana-data:/var/lib/grafana
 
   promtail:
     image: grafana/promtail:latest
@@ -75,4 +83,3 @@ services:
 
 volumes:
   grafana-data:
-
