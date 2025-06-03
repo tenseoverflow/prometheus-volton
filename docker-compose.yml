@@ -13,6 +13,7 @@ services:
 
   prometheus-exporter:
     image: prefecthq/prometheus-prefect-exporter:latest
+    container_name: prefect-exporter
     ports:
       - "40000:40000"
     environment:
