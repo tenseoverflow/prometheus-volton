@@ -16,7 +16,7 @@ scrape_configs:
 
   - job_name: "prefect"
     static_configs:
-      - targets: ["prefect-exporter:40000"]
+      - targets: ["prefect-exporter:8000"]
 
   - job_name: "prod-node"
     static_configs:

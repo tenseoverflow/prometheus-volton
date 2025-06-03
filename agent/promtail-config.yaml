@@ -6,19 +6,19 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: http://localhost:3100/loki/api/v1/push   # <-- Use your dev server's IP
+  - url: http://localhost:3100/loki/api/v1/push # <-- Use your dev server's IP
 
 scrape_configs:
-  - job_name: varlogs
+  - job_name: varlogs-prod
     static_configs:
       - targets: [localhost]
         labels:
-          job: varlogs
+          job: varlogs-prod
           __path__: /var/log/*.log
 
-  - job_name: docker
+  - job_name: docker-prod
     static_configs:
       - targets: [localhost]
         labels:
-          job: docker
+          job: docker-prod
           __path__: /var/lib/docker/containers/*/*.logc
