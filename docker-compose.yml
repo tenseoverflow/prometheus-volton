@@ -59,6 +59,8 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     # No external ports - accessible through internal network
+    ports:
+      - 3000:3000
     depends_on:
       - prometheus
       - loki
