@@ -28,7 +28,7 @@ scrape_configs:
   - job_name: docker-dev
     docker_sd_configs:
       - host: unix:///var/run/docker.sock
-        refresh_interval: 2s
+        refresh_interval: 1s
         #filters:
         #  - name: name
         #    values: [prefect*]
