@@ -37,6 +37,6 @@ scrape_configs:
         replacement: 'docker-dev'
       - source_labels: ['__meta_docker_container_name']
         regex: '/(.*)'
-        target_label: 'container-dev'
+        target_label: 'container'
       - source_labels: ['__meta_docker_container_log_stream']
         target_label: 'stream'
