@@ -32,9 +32,9 @@ scrape_configs:
         #    values: ["logger=loki"]
     relabel_configs:
       - target_label: 'job'
-        replacement: 'docker'
+        replacement: 'docker-prod'
       - source_labels: ['__meta_docker_container_name']
         regex: '/(.*)'
-        target_label: 'container'
+        target_label: 'container-prod'
       - source_labels: ['__meta_docker_container_log_stream']
-        target_label: 'stream'
+        target_label: 'stream-prod'

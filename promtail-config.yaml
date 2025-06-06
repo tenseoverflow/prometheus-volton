@@ -34,9 +34,9 @@ scrape_configs:
         #    values: [prefect*]
     relabel_configs:
       - target_label: 'job'
-        replacement: 'docker'
+        replacement: 'docker-dev'
       - source_labels: ['__meta_docker_container_name']
         regex: '/(.*)'
-        target_label: 'container'
+        target_label: 'container-dev'
       - source_labels: ['__meta_docker_container_log_stream']
         target_label: 'stream'
