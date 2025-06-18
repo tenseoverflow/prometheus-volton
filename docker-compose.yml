@@ -12,6 +12,7 @@ services:
       - node-exporter
     networks:
       - monitoring
+    restart: unless-stopped
 
   prometheus-exporter:
     image: prefecthq/prometheus-prefect-exporter:latest
@@ -22,6 +23,7 @@ services:
       # PREFECT_API_AUTH_STRING: ""
     networks:
       - monitoring
+    restart: unless-stopped
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -70,6 +72,12 @@ services:
     networks:
       - monitoring
       - logging
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   promtail:
     image: grafana/promtail:latest
@@ -83,6 +91,7 @@ services:
     command: -config.file=/etc/promtail/promtail.yaml
     networks:
       - logging
+    restart: unless-stopped
 
   loki:
     image: grafana/loki:latest
@@ -92,6 +101,7 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - logging
+    restart: unless-stopped
 
 volumes:
   grafana-data:
